@@ -1,40 +1,38 @@
 'use strict';
 
-const Express = require('express');
-const Path = require('path');
-const Favicon = require('serve-favicon');
-const Logger = require('morgan');
-const CookieParser = require('cookie-parser');
-const BodyParser = require('body-parser');
-const Mongoose = require('mongoose');
+const express = require('express');
+const path = require('path');
+const favicon = require('serve-favicon');
+const logger = require('morgan');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
 
-const Index = require('./routes/index');
-const Users = require('./routes/users');
-const DbConfig = require('./db/config');
+const index = require('./routes/index');
+const users = require('./routes/users');
 
-const App = Express();
+const app = express();
 
 // view engine setup
-App.set('views', Path.join(__dirname, 'views'));
-App.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
 
 // uncomment after placing your favicon in /public
-//App.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-App.use(Logger('dev'));
-App.use(BodyParser.json());
-App.use(BodyParser.urlencoded({ extended: false }));
-App.use(CookieParser());
-App.use(Express.static(Path.join(__dirname, 'public')));
+//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(logger('dev'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
 
-App.use('/', Index);
-App.use('/users', Users);
+app.use('/', index);
+app.use('/users', users);
 
-App.listen(8200, function () {
+app.listen(8200, function () {
   console.log("Server Start!");
 });
 
 // catch 404 and forward to error handler
-App.use(function(req, res, next) {
+app.use(function(req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
   next(err);
@@ -43,8 +41,8 @@ App.use(function(req, res, next) {
 // error handlers
 // development error handler
 // will print stacktrace
-if (App.get('env') === 'development') {
-  App.use(function(err, req, res, next) {
+if (app.get('env') === 'development') {
+  app.use(function(err, req, res, next) {
     res.status(err.status || 500);
     res.render('error', {
       message: err.message,
@@ -55,7 +53,7 @@ if (App.get('env') === 'development') {
 
 // production error handler
 // no stacktraces leaked to user
-App.use(function(err, req, res, next) {
+app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error', {
     message: err.message,
@@ -63,15 +61,4 @@ App.use(function(err, req, res, next) {
   });
 });
 
-Mongoose.connect(DbConfig.dbLogin);
-
-const db = Mongoose.connection;
-
-db.on('error', console.error.bind(console, 'connection error:'));
-
-db.once('open', function() {
-  // we're connected!
-  console.log('mongodb server start!');
-});
-
-module.exports = App;
+module.exports = app;

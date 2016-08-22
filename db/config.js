@@ -1,2 +1,2 @@
-var dbLogin = 'mongodb://root:root@localhost/admin';
+var dbLogin = 'mongodb://qisu:qisu@localhost/qisu';
 exports.dbLogin = dbLogin;

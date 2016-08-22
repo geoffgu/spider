@@ -1,13 +1,13 @@
-const Express = require('express');
-const Router = Express.Router();
+const express = require('express');
+const router = express.Router();
 
 /* GET users listing. */
-Router.get('/', function(req, res, next) {
+router.get('/', function(req, res, next) {
   res.send('respond with a hi');
 });
 
-Router.get('/hi', function(req, res, next) {
+router.get('/hi', function(req, res, next) {
   res.send('respond with a hihi');
 });
 
-module.exports = Router;
+module.exports = router;
