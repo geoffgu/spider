@@ -10,6 +10,9 @@ page.settings = {
   userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36'
 };
 
+phantom.cookiesEnabled = true;
+phantom.javascriptEnabled = true;
+
 page.customHeaders = {
   'Referer': 'https://rong.36kr.com/',
   'Cookie': 'gr_user_id=4b9ecb8a-fec8-457f-a36c-d9976686d2f1; kr_stat_uuid=vPEtG24444585; _ga=GA1.2.1720017031.1466675152; Hm_lvt_e8ec47088ed7458ec32cde3617b23ee3=1466675152; aliyungf_tc=AQAAANbzP1hnHw8A8hBuJF6jOe/zPjmt; c_name=point; Hm_lvt_713123c60a0e86982326bae1a51083e1=1471340450,1471510428; Hm_lpvt_713123c60a0e86982326bae1a51083e1=1471510428; Hm_lvt_e8ec47088ed7458ec32cde3617b23ee3=; Hm_lpvt_e8ec47088ed7458ec32cde3617b23ee3=1471605358; gr_session_id_76d36bd044527820a1787b198651e2f1=a96469da-f333-4fe0-865c-acd0abaffb8a; Z-XSRF-TOKEN=eyJpdiI6IlhDUU1FUXlQcTM5VTB2eGxhbFwvYzBRPT0iLCJ2YWx1ZSI6Im4xVmVSTFMxaDhUU0lQME5xQmRVaUhibHAwM1hmc3g1VGZsSW1NZ0tyVTlPK1RGcU9ERG9UeW4zQ1l2Q05FaSt1QWZTdzR0VW1oR0dKMnI5eGhrZXZ3PT0iLCJtYWMiOiIzOGYzZDU5ODgyNjk3MzM3ZTlmNDMwNzZhNzRkMDExNzdlN2JjMzYwODkzZjI2YTNmZTY4NzY2ZGMwZDZiMjMzIn0%3D; krchoasss=eyJpdiI6IkdyMFJXYjQyQkJJbTc0b1oyaEU4MGc9PSIsInZhbHVlIjoiNkJyRUI1RW5QazN4VzFWayt1YklkeFhDT1wvYVZTcmF0UnRvVWNEQ3puOUNzNGtVU3hWelRVMGk1NVNLb29UcDFKNWJoVjg4aTV4c1lQdmFsSnBSS1pBPT0iLCJtYWMiOiJiNTQ5NTRjN2QyZjgyZDkyODNmY2I1MDEwMDgyYzFmYzQxNmYwYWZmMDVjM2JjMWMyYjMzZmZmZTFjNTdhNzY0In0%3D'
