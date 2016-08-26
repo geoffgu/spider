@@ -33,7 +33,7 @@ let start = function() {
         let json = str.substr(5);
         let obj = JSON.parse(json);
         Company.create(obj.data, function (err, companies) {
-          if (err) return console.error(err);
+          if (err) console.error(err);
           end();
         });
       }

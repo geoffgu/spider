@@ -7,7 +7,6 @@ const models = require('../models');
 var Company = models.Company;
 
 let pageUrls = [], //存放收集文章页面网站
-  pageNum = 1, //要爬取文章的页数
   loginUrl = 'https://passport.36kr.com/pages/?ok_url=http%3A%2F%2F36kr.com%2F#/login?pos=header';
   // ep = new Eventproxy()
 
@@ -35,7 +34,14 @@ let start = function() {
       if (str.startsWith('data:')) {
         let json = str.substr(5);
         let obj = JSON.parse(json);
-        end();
+        let pattern = 'https://rong.36kr.com';
+        let link = url.replace(new RegExp(pattern), '');
+        Company.find({ cpyDetailLink: link }, '_id', function (err, id) {
+          Company.update({ _id: id[0]._id }, obj, function (err, doc) {
+            if (err) console.error(err);
+            end();
+          });
+        });
       }
     });
 

@@ -9,4 +9,6 @@ var CompanySchema = new Schema({
   strict: false
 });
 
+CompanySchema.index({ cpyDetailLink: 1 });
+
 mongoose.model('Company', CompanySchema);
