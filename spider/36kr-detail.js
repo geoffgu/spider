@@ -24,7 +24,7 @@ let start = function() {
   let fetch = function (url, callback) {
     concurrencyCount++;
     console.log('并发量:' + concurrencyCount + '地址:' + url);
-    let ls = childProcess.spawn('phantomjs', ['--cookies-file=./spider/cookie.txt', './spider/phantom-detail.js', url]);
+    let ls = childProcess.spawn('phantomjs', ['--cookies-file=./spider/cookie.txt', './spider/36kr-phantom-detail.js', url]);
     ls.stdout.on('data', function (data) {
       let str = iconv.decode(data, 'utf-8');
       console.log(str);
