@@ -16,5 +16,7 @@ db.once('open', function() {
 
 // models
 require('./company');
+require('./founder');
 
 exports.Company = mongoose.model('Company');
+exports.Founder = mongoose.model('Founder');
