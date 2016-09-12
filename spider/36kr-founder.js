@@ -20,6 +20,26 @@ let pageUrls = new Set(); //存放收集文章页面网站
   //   });
   // });
 
+  // Company.find({'referer':'36Kr', 'raiseFunds.0.organizations.0.link': {$exists: true}}, function (err, companies) {
+  //   if (err) return console.error(err);
+  //   companies.forEach(function (company, index) {
+  //     var raiseFunds = company.toObject().raiseFunds;
+  //     raiseFunds.forEach(function (fund, index) {
+  //       fund.organizations.forEach(function (org) {
+  //         // let pattern = 'https://rong.36kr.comhttps://rong.36kr.com';
+  //         // let link = org.link.replace(new RegExp(pattern), '');
+  //         org.link = 'https://rong.36kr.com' + org.link;
+  //         // org.link = link;
+  //       });
+  //     });
+  //     console.log(company.toObject()._id + '***' + JSON.stringify(raiseFunds));
+  //     Company.update({cpyDetailLink: company.toObject().cpyDetailLink}, { raiseFunds: raiseFunds }, function (err, doc) {
+  //       if (err) console.error(err);
+  //       console.log(doc);
+  //     });
+  //   });
+  // });
+
 Company.find(function (err, companies) {
   if (err) return console.error(err);
   companies.forEach(function (company, index) {

@@ -138,7 +138,7 @@ page.open(url, function(status) {
           for (var n = 0, orgLength = $('#mPastFinancing ul li').eq(m).find('.c-body .content span').length; n < orgLength; n++) {
             var org = {};
             org.name = $('#mPastFinancing ul li').eq(m).find('.c-body .content span').eq(n).find('a:not(.ng-hide)').text();
-            org.link = $('#mPastFinancing ul li').eq(m).find('.c-body .content span').eq(n).find('a:not(.ng-hide)').attr('href');
+            org.link = 'https://rong.36kr.com' + $('#mPastFinancing ul li').eq(m).find('.c-body .content span').eq(n).find('a:not(.ng-hide)').attr('href');
             fund.organizations.push(org);
           }
           obj.raiseFunds.push(fund);

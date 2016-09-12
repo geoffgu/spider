@@ -14,7 +14,7 @@ let pageUrls = [], //存放收集文章页面网站
 Company.find(function (err, companies) {
   if (err) return console.error(err);
   companies.forEach(function (company, index) {
-    pageUrls.push('https://rong.36kr.com' + company.toObject().cpyDetailLink);
+    pageUrls.push(company.toObject().cpyDetailLink);
   });
   start();
 });
@@ -34,9 +34,7 @@ let start = function() {
       if (str.startsWith('data:')) {
         let json = str.substr(5);
         let obj = JSON.parse(json);
-        let pattern = 'https://rong.36kr.com';
-        let link = url.replace(new RegExp(pattern), '');
-        Company.find({ cpyDetailLink: link }, '_id', function (err, id) {
+        Company.find({ cpyDetailLink: url }, '_id', function (err, id) {
           Company.update({ _id: id[0]._id }, obj, function (err, doc) {
             if (err) console.error(err);
             end();

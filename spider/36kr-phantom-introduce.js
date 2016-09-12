@@ -38,11 +38,11 @@ page.open(url, function(status) {
           var obj = {};
           var $currentEle = $('.company-list-body .table-row.ng-scope').eq(i);
           obj.name = $currentEle.find('.name a').text();
-          obj.cpyDetailLink = $currentEle.find('.name a').attr('href');
+          obj.cpyDetailLink = 'https://rong.36kr.com' + $currentEle.find('.name a').attr('href');
           obj.avatar = $currentEle.find('.avatar img').attr('src');
           obj.des = $currentEle.find('.des').text();
           obj.founder = $currentEle.find('.founder a').text();
-          obj.founderDetailLink = $currentEle.find('.founder a').attr('href');
+          obj.founderDetailLink = 'https://rong.36kr.com' + $currentEle.find('.founder a').attr('href');
           obj.industry = $currentEle.find('.industry').text();
           obj.location = $currentEle.find('.location').text();
           obj.round = $currentEle.find('.round').text();
