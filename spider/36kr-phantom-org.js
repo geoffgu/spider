@@ -169,11 +169,12 @@ page.open(url, function(status) {
                 }
                 obj.type = '普通投资机构';
                 obj.referer = '36Kr';
-                console.log('org:' + JSON.stringify(obj));
+                console.log('org:' + JSON.stringify(obj) + ':org');
                 return null;
               }
             } else if (url.indexOf('company') > -1) {
               var obj = {};
+              obj.name = $('.main-wrap .main .name-info .name').text().trim();
               obj.avatar = $('.main-wrap .l-sidebar .company-logo img').attr('src');
               obj.time = $('.main-wrap .main .name-info .year').text();
               obj.tags = [];
@@ -207,7 +208,7 @@ page.open(url, function(status) {
               obj.investDetailLink = url;
               obj.type = '公司投资';
               obj.referer = '36Kr';
-              console.log('org:' + JSON.stringify(obj));
+              console.log('org:' + JSON.stringify(obj) + ':org');
               return null;
             } else if (url.indexOf('userinfo') > -1) {
               var obj = {};
@@ -274,7 +275,7 @@ page.open(url, function(status) {
               obj.investDetailLink = url;
               obj.type = '个人投资';
               obj.referer = '36Kr';
-              console.log('org:' + JSON.stringify(obj));
+              console.log('org:' + JSON.stringify(obj) + ':org');
               return null;
             } else {
               console.log('error');
@@ -332,7 +333,7 @@ page.open(url, function(status) {
                 }
                 tempObj.type = '顶级投资机构';
                 tempObj.referer = '36Kr';
-                console.log('org:' + JSON.stringify(tempObj));
+                console.log('org:' + JSON.stringify(tempObj) + ':org');
               }
             }
           }, tempObj, url);
@@ -355,7 +356,9 @@ page.open(url, function(status) {
 });
 
 page.onConsoleMessage = function (msg) {
-  console.log(msg);
+  if (msg.indexOf('org:') > -1) {
+    console.log(msg);
+  }
 }
 
 page.onError = function (msg, trace) {
