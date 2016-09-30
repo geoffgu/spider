@@ -7,13 +7,13 @@ const models = require('../models');
 var Company = models.Company;
 
 let pageUrls = new Set(); //存放收集文章页面网站
-let count = 116;
+let count = 709;
 
 // pageUrls.add('https://www.crunchbase.com/organization/chunyu');
 Company.find({ 'referer': 'crunchbase', 'cpyDetailLink': { $exists: true } }, function (err, companies) {
   if (err) return console.error(err);
   companies.forEach(function (company, index) {
-    if (index >= 116) {
+    if (index >= 709) {
       pageUrls.add(company.toObject().cpyDetailLink);
     }
   });
