@@ -1,7 +1,8 @@
 var system = require('system');
 var url = system.args[1];
 var webpage = require('webpage'),
-  page = webpage.create();
+  page = webpage.create(),
+  stepIndex = 0;
 
 phantom.cookiesEnabled = true;
 phantom.javascriptEnabled = true;
@@ -22,7 +23,9 @@ page.onLoadStarted = function() {
 };
 
 page.onConsoleMessage = function(msg) {
-  if (msg.indexOf('Company:') > -1) {
+  if (msg.indexOf('Company:') > -1 || msg == 'login success') {
+    console.log(msg);
+  } else {
     console.log(msg);
   }
 }
@@ -38,12 +41,76 @@ page.onError = function(msg, trace) {
   console.error(msgStack.join('\n'));
 };
 
+// page.onNavigationRequested = function(url, type, willNavigate, main) {
+//   console.log('Trying to navigate to: ' + url);
+//   console.log('Caused by: ' + type);
+//   console.log('Will actually navigate: ' + willNavigate);
+//   console.log('Sent from the page\'s main frame: ' + main);
+// }
+
 page.open(url, function(status) {
   if (status === 'success') {
-    setTimeout(checkPageReady, 3000);
+    if (url == 'https://www.crunchbase.com/app/login') {
+      setTimeout(loginPage, 8000);
+    } else {
+      setTimeout(checkPageReady, 5000);
+    }
   } else {
     page.close();
     phantom.exit();
+  }
+
+  function loginPage () {
+    if (page.injectJs('./node_modules/jquery/dist/jquery.min.js')) {
+      var steps = [
+        function () {
+          //Enter username
+          page.evaluate(function () {
+            $("form[name='loginForm'] input[type='email']").trigger( "focus" );
+          });
+          page.sendEvent('keypress', 'gufeifan@geekheal.com');
+        },
+        function () {
+          //Enter password
+          page.evaluate(function () {
+            $("form[name='loginForm'] input[type='password']").trigger( "focus" );
+          });
+          page.sendEvent('keypress', 'Caonima123');
+        },
+        function () {
+          //Login
+          page.evaluate(function() {
+            $("form[name='loginForm'] > .layout-row.flex > button[type='submit']").trigger( "click" );
+          });
+        },
+        function () {
+          //Get redirected page cookie
+          var cookies = page.cookies;
+          for(var i = 0, length = cookies.length; i < length; i++) {
+            console.log(JSON.stringify(cookies[i]));
+            phantom.addCookie(cookies[i]);
+          }
+        }
+      ];
+
+      var interval = setInterval(function () {
+        if (typeof steps[stepIndex] == 'function') {
+          console.log('step ' + (stepIndex + 1));
+          steps[stepIndex]();
+          stepIndex++;
+        } else {
+          console.log('------steps complete------');
+          clearInterval(interval);
+          page.evaluate(function () {
+            console.log('login success');
+          });
+        }
+      }, 5000);
+    } else {
+      console.log('cannot load jquery');
+      page.close();
+      phantom.exit();
+    }
   }
 
   function checkPageReady() {
@@ -152,6 +219,7 @@ page.open(url, function(status) {
           company.offices.push(office);
         }
         console.log('Company:' + JSON.stringify(company));
+        console.log('***' + $('.user-name').text());
       });
     } else {
       console.log('cannot load jquery');
