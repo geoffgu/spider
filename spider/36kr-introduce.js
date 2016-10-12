@@ -1,5 +1,3 @@
-'use strict';
-
 // const superagent = require('superagent');
 // const cheerio = require('cheerio');
 // const Eventproxy = require('eventproxy');

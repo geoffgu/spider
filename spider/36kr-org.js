@@ -1,5 +1,3 @@
-'use strict';
-
 const async = require('async');
 const iconv = require('iconv-lite');
 const childProcess = require('child_process');
