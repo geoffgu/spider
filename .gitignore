@@ -2,3 +2,4 @@ node_modules
 .tern-project
 spider/36kr-cookie.txt
 spider/juzi-cookie.txt
+spider/crunchbase-cookie.txt
