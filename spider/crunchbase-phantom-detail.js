@@ -219,7 +219,6 @@ page.open(url, function(status) {
           company.offices.push(office);
         }
         console.log('Company:' + JSON.stringify(company));
-        console.log('***' + $('.user-name').text());
       });
     } else {
       console.log('cannot load jquery');
