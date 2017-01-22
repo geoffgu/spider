@@ -1,3 +1,7 @@
+'use strict';
+
+var fs = require('fs');
+var path = require('path');
 const async = require('async');
 const iconv = require('iconv-lite');
 const childProcess = require('child_process');
@@ -15,8 +19,8 @@ Company.find({ 'referer': 'crunchbase', 'cpyDetailLink': { $exists: true } }, fu
       pageUrls.add(company.toObject().cpyDetailLink);
     }
   });
-  // console.log(pageUrls);
-  start();
+  console.log(pageUrls);
+  // start();
 });
 
 let start = function() {

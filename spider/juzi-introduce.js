@@ -15,16 +15,18 @@ let pageUrls = [], //存放收集文章页面网站
   // pageUrls.push('http://www.itjuzi.com/company/foreign?scope=47&page=' + i);
 // }
 
-Company.find(function (err, companies) {
-  if (err) return console.error(err);
-  companies.forEach(function (company, index) {
-    if (index >= 1972) {
-      pageUrls.push(company.toObject().cpyDetailLink);
-    }
-  });
-  // console.log(pageUrls);
-  start();
-});
+pageUrls.push('http://www.itjuzi.com/company/17723');
+
+// Company.find(function (err, companies) {
+//   if (err) return console.error(err);
+//   companies.forEach(function (company, index) {
+//     if (index >= 1972) {
+//       pageUrls.push(company.toObject().cpyDetailLink);
+//     }
+//   });
+//   // console.log(pageUrls);
+//   start();
+// });
 
 let start = function() {
   let concurrencyCount = 0;
