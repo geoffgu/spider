@@ -10,6 +10,22 @@ var path = require('path');
 var Company = models.Company;
 var Founder = models.Founder;
 var count = 0;
+
+// Company.find({'members':{$exists:true}, 'members.founder_id':{$eq:null}}, '_id members', function(err, doc) {
+//   doc.forEach(function (item) {
+//     var membersArr = [];
+//     item.toObject().members.forEach(function (member) {
+//       if (member.founder_id) {
+//         membersArr.push(member)
+//       }
+//     });
+//     Company.update({ _id: item.toObject()._id }, {members: membersArr}, {limit:1}, function (err2, doc) {
+//       if (err2) console.error(err2);
+//       console.log(doc);
+//     });
+//   });
+// });
+
 // Company.aggregate().group({ _id: "$name", count: {$sum : 1}}).exec(function(err, companies) {
 //   if (err) console.error(err);
 //   companies.forEach(function(company, index) {
